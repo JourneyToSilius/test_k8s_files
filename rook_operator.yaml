@@ -82,15 +82,16 @@ data:
   CSI_PROVISIONER_NODE_AFFINITY: "storage-node=true"
   # (Optional) CEPH CSI provisioner tolerations list. Put here list of taints you want to tolerate in YAML format.
   # CSI provisioner would be best to start on the same nodes as other ceph daemons.
-  # CSI_PROVISIONER_TOLERATIONS: |
-  #   - effect: NoSchedule
-  #     key: node-role.kubernetes.io/controlplane
-  #     operator: Exists
+  CSI_PROVISIONER_TOLERATIONS: |
+
+    - key: storage-node
+      operator: Exists
+      
   #   - effect: NoExecute
   #     key: node-role.kubernetes.io/etcd
   #     operator: Exists
   # (Optional) Ceph CSI plugin NodeAffinity.
-  #CSI_PLUGIN_NODE_AFFINITY: "role=worker; storage=rook, ceph"
+  CSI_PLUGIN_NODE_AFFINITY: "storage-node=false"
   # (Optional) CEPH CSI plugin tolerations list. Put here list of taints you want to tolerate in YAML format.
   # CSI plugins need to be started on all the nodes where the clients need to mount the storage.
   # CSI_PLUGIN_TOLERATIONS: |
@@ -261,7 +262,7 @@ data:
   ROOK_OBC_WATCH_OPERATOR_NAMESPACE: "true"
 
   # (Optional) Admission controller NodeAffinity.
-  ADMISSION_CONTROLLER_NODE_AFFINITY: "storage-node=true"
+  #ADMISSION_CONTROLLER_NODE_AFFINITY: "storage-node=true"
   # (Optional) Admission controller tolerations list. Put here list of taints you want to tolerate in YAML format.
   # Admission controller would be best to start on the same nodes as other ceph daemons.
   # ADMISSION_CONTROLLER_TOLERATIONS: |
@@ -306,6 +307,7 @@ spec:
         # If this is not set to true, the operator will watch for cluster CRDs in all namespaces.
         - name: ROOK_CURRENT_NAMESPACE_ONLY
           value: "false"
+
         # To disable RBAC, uncomment the following:
         # - name: RBAC_ENABLED
         #   value: "false"
@@ -317,14 +319,12 @@ spec:
         # - name: AGENT_TOLERATION_KEY
         #   value: "<KeyOfTheTaintToTolerate>"
         # (Optional) Rook Agent tolerations list. Put here list of taints you want to tolerate in YAML format.
-        # - name: AGENT_TOLERATIONS
-        #   value: |
-        #     - effect: NoSchedule
-        #       key: node-role.kubernetes.io/controlplane
-        #       operator: Exists
-        #     - effect: NoExecute
-        #       key: node-role.kubernetes.io/etcd
-        #       operator: Exists
+        - name: AGENT_TOLERATIONS
+          value: |
+
+            - key: storage-node
+              operator: Exists
+
         # (Optional) Rook Agent priority class name to set on the pod(s)
         # - name: AGENT_PRIORITY_CLASS_NAME
         #   value: "<PriorityClassName>"
@@ -355,8 +355,12 @@ spec:
         # - name: DISCOVER_TOLERATION_KEY
         #   value: "<KeyOfTheTaintToTolerate>"
         # (Optional) Rook Discover tolerations list. Put here list of taints you want to tolerate in YAML format.
-        # - name: DISCOVER_TOLERATIONS
-        #   value: |
+        - name: DISCOVER_TOLERATIONS
+          value: |
+
+            - key: storage-node
+              operator: Exists
+
         #     - effect: NoSchedule
         #       key: node-role.kubernetes.io/controlplane
         #       operator: Exists
