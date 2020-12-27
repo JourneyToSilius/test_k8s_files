@@ -16,7 +16,7 @@ ExecStart=/usr/local/bin/etcd \
   --client-cert-auth \
   --initial-advertise-peer-urls https://192.168.3.98:2380 \
   --listen-peer-urls https://192.168.3.107:2380 \
-  --listen-client-urls https://192.168.3.98:2379 \
+  --listen-client-urls https://192.168.3.98:2379,http://127.0.0.1:2379 \
   --advertise-client-urls https://192.168.3.98:2379 \
   --initial-cluster-token etcd-cluster-0 \
   --initial-cluster 192.168.3.98=https://192.168.3.98:2380,192.168.3.99=https://192.168.3.99:2380,192.168.3.100=https://192.168.3.100:2380 \
