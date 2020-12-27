@@ -15,7 +15,7 @@ ExecStart=/usr/local/bin/etcd \
   --peer-client-cert-auth \
   --client-cert-auth \
   --initial-advertise-peer-urls https://k8s-master-1:2380 \
-  --listen-peer-urls https://vip-k8s-master:2380 \
+  --listen-peer-urls https://192.168.3.107:2380 \
   --listen-client-urls https://k8s-master-1:2379,http://127.0.0.1:2379 \
   --advertise-client-urls https://k8s-master-1:2379 \
   --initial-cluster-token etcd-cluster-0 \
