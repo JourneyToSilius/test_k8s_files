@@ -1,0 +1,13 @@
+spec:
+  replicas: 3
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: master-node
+                    operator: In
+                    values:
+                      - "true"
