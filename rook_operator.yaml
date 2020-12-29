@@ -95,8 +95,11 @@ data:
   # (Optional) CEPH CSI plugin tolerations list. Put here list of taints you want to tolerate in YAML format.
   # CSI plugins need to be started on all the nodes where the clients need to mount the storage.
   # CSI_PLUGIN_TOLERATIONS: |
-  #   - effect: NoSchedule
-  #     key: node-role.kubernetes.io/controlplane
+
+  #   - key: worker-node
+  #     operator: Exists
+
+  #   - key: master-node
   #     operator: Exists
   #   - effect: NoExecute
   #     key: node-role.kubernetes.io/etcd
@@ -262,7 +265,7 @@ data:
   ROOK_OBC_WATCH_OPERATOR_NAMESPACE: "true"
 
   # (Optional) Admission controller NodeAffinity.
-  #ADMISSION_CONTROLLER_NODE_AFFINITY: "storage-node=true"
+  ADMISSION_CONTROLLER_NODE_AFFINITY: "storage-node=true"
   # (Optional) Admission controller tolerations list. Put here list of taints you want to tolerate in YAML format.
   # Admission controller would be best to start on the same nodes as other ceph daemons.
   # ADMISSION_CONTROLLER_TOLERATIONS: |
