@@ -324,7 +324,6 @@ spec:
         # (Optional) Rook Agent tolerations list. Put here list of taints you want to tolerate in YAML format.
         - name: AGENT_TOLERATIONS
           value: |
-
             - key: storage-node
               operator: Exists
 
