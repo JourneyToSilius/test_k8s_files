@@ -1,0 +1,10 @@
+volumeClaimTemplates:
+  - metadata:
+      name: prometheus-storage
+      namespace: monitoring
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: replicapool
+      resources:
+        requests:
+          storage: 20Gi
