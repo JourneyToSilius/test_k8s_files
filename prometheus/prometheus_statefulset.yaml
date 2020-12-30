@@ -51,7 +51,7 @@ spec:
             - "--log.level=debug"
             - "--tsdb.path=/prometheus"
             - "--prometheus.url=http://127.0.0.1:9090"
-            - "--objstore.config={type: GCS, config: {bucket: prometheus-long-term}}"
+            - "--objstore.config={type: GCS, config: {bucket: prometheus-long-term-jazzmine}}"
             - "--reloader.config-file=/etc/prometheus/prometheus.yaml.tmpl"
             - "--reloader.config-envsubst-file=/etc/prometheus-shared/prometheus.yaml"
             - "--reloader.rule-dir=/etc/prometheus/rules/"
@@ -61,7 +61,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name : GOOGLE_APPLICATION_CREDENTIALS
-              value: /home/kubeoperator/.kube/thanos-gcs-credentials.json
+              value: /etc/secret/thanos-gcs-credentials.json
           ports:
             - name: http-sidecar
               containerPort: 10902

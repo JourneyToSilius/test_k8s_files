@@ -51,7 +51,7 @@ spec:
             - --rule-file=/etc/thanos-ruler/*.rules.yaml
             - --alertmanagers.url=http://alertmanager:9093
             - --query=thanos-querier:9090
-            - "--objstore.config={type: GCS, config: {bucket: thanos-ruler}}"
+            - "--objstore.config={type: GCS, config: {bucket: thanos-ruler-jazzmine}}"
             - --label=ruler_cluster="prometheus-ha"
             - --label=replica="$(POD_NAME)"
           env:

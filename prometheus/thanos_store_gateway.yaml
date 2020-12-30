@@ -27,7 +27,7 @@ spec:
           - "store"
           - "--log.level=debug"
           - "--data-dir=/data"
-          - "--objstore.config={type: GCS, config: {bucket: prometheus-long-term}}"
+          - "--objstore.config={type: GCS, config: {bucket: prometheus-long-term-jazzmine}}"
           - "--index-cache-size=500MB"
           - "--chunk-pool-size=500MB"
           env:
