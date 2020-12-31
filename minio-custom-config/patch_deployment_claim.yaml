@@ -1,0 +1,7 @@
+spec:
+  # Refer to the PVC created earlier
+  volumes:
+    - name: storage
+      persistentVolumeClaim:
+        # Name of the PVC created earlier
+        claimName: minio-pv-claim
