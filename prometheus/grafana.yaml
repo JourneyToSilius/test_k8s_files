@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: k8s.gcr.io/heapster-grafana-amd64:v5.0.4
+        image: docker.io/bitnami/grafana:latest
         ports:
         - containerPort: 3000
           protocol: TCP

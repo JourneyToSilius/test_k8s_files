@@ -26,7 +26,7 @@ spec:
       serviceAccountName: monitoring
       containers:
         - name: prometheus
-          image: prom/prometheus:v2.4.3
+          image: prom/prometheus:v2.23.0
           args:
             - "--config.file=/etc/prometheus-shared/prometheus.yaml"
             - "--storage.tsdb.path=/prometheus/"
@@ -45,7 +45,7 @@ spec:
             - name: prometheus-rules
               mountPath: /etc/prometheus/rules
         - name: thanos
-          image: quay.io/thanos/thanos:v0.8.0
+          image: quay.io/thanos/thanos:v0.17.0
           args:
             - "sidecar"
             - "--log.level=debug"

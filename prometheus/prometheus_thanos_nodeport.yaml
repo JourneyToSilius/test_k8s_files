@@ -4,15 +4,19 @@ metadata:
   name: grafana-external
   namespace: monitoring
   labels:
-    app: grafana
+    app.kubernetes.io/component: grafana
+    app.kubernetes.io/instance: grafana-prom-stack
+    app.kubernetes.io/name: grafana
 spec:
   ports:
-  - name: grafana
-    port: 3000
-    protocol: TCP
-    targetPort: 3000
+    - name: grafana
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
   selector:
-    app: grafana
+    app.kubernetes.io/component: grafana
+    app.kubernetes.io/instance: grafana-prom-stack
+    app.kubernetes.io/name: grafana
   sessionAffinity: None
   type: NodePort
 
@@ -21,63 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-0-service
-  namespace: monitoring
-  labels:
-    app: prometheus-0-service
-spec:
-  ports:
-  - name: prometheus-0-service
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: prometheus-0-service
-  sessionAffinity: None
-  type: NodePort
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus-1-service
-  namespace: monitoring
-  labels:
-    app: prometheus-1-service
-spec:
-  ports:
-  - name: prometheus-1-service
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: prometheus-1-service
-  sessionAffinity: None
-  type: NodePort
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus-2-service
-  namespace: monitoring
-  labels:
-    app: prometheus-2-service
-spec:
-  ports:
-  - name: prometheus-2-service
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: prometheus-2-service
-  sessionAffinity: None
-  type: NodePort
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: thanos-querier-external
+  name: thanos-querier-ext
   namespace: monitoring
   labels:
     app: thanos-querier
@@ -87,10 +35,9 @@ spec:
     port: 9090
     protocol: TCP
     targetPort: 9090
+    nodePort: 30007
   selector:
     app: thanos-querier
   sessionAffinity: None
   type: NodePort
-
-
 
