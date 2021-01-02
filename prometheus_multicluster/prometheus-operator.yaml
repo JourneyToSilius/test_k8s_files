@@ -1,0 +1,24 @@
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: false
+
+prometheus:
+  retention: 12h
+  prometheusSpec:
+    externalLabels:
+      cluster: a-cluster # Add a cluster tag to distinguish clusters
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: rook-ceph-block
+          resources:
+            requests:
+              storage: 10Gi
+    thanos:
+      baseImage: quay.io/thanos/thanos
+      version: v0.10.1
+      objectStorageConfig:
+        key: thanos.yaml
+        name: thanos-objectstorage

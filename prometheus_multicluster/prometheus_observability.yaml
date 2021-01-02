@@ -1,0 +1,35 @@
+grafana:
+  persistence:
+    enabled: true
+    storageClassName: rook-ceph-block
+  ingress:
+    enabled: true
+    hosts:
+    - cluster.local
+  additionalDataSources:
+    - name: Prometheus
+      type: prometheus
+      url: http://thanos-querier:9090/
+      access: proxy
+      isDefault: true
+  sidecar:
+    datasources:
+      defaultDatasourceEnabled: false
+prometheus:
+  retention: 12h
+  prometheusSpec:
+    externalLabels:
+      cluster: observe # Add a cluster tag to distinguish clusters
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: rook-ceph-block
+          resources:
+            requests:
+              storage: 10Gi
+    thanos:
+      baseImage: quay.io/thanos/thanos
+      version: v0.17.0
+      objectStorageConfig:
+        key: thanos.yaml
+        name: thanos-objectstorage

@@ -1,3 +1,17 @@
 echo "Username: $(kubectl get secret prom-stack-test-release-grafana --namespace monitoring --output=jsonpath='{.data.admin-password}' | base64 --decode)"
 
 kubectl expose deployment thanos-test-release-query-frontend --type=NodePort --name=
+
+
+
+helm install c7n/prometheus-operator \
+    -f prometheus-observability.yaml \
+    --name prometheus-operator \
+    --version 8.5.8 \
+    --namespace monit
+
+
+helm install prometheus-operator -f prometheus-observability.yaml center/choerodon/prometheus-operator -n monit
+
+
+kubectl -n monit create secret generic thanos-objectstorage --from-file=thanos.yaml=thanos_bucket.yaml
