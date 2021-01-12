@@ -1,7 +1,7 @@
 type: s3
 config:
   bucket: thanos
-  endpoint: minio-test.monit.svc.cluster.local
+  endpoint: minio-test:9000
   access_key: minio
   secret_key: minio123
   insecure: true

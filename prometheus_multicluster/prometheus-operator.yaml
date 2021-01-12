@@ -16,9 +16,10 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+
     thanos:
       baseImage: quay.io/thanos/thanos
-      version: v0.10.1
+      version: v0.17.0
       objectStorageConfig:
         key: thanos.yaml
         name: thanos-objectstorage

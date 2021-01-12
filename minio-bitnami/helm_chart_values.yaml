@@ -302,11 +302,11 @@ persistence:
   ## Persistent Volume Access Mode
   ##
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
 
   ## Persistent Volume size
   ##
-  size: 8Gi
+  size: 3Gi
 
   ## Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>

@@ -15,3 +15,25 @@ helm install prometheus-operator -f prometheus-observability.yaml center/choerod
 
 
 kubectl -n monit create secret generic thanos-objectstorage --from-file=thanos.yaml=thanos_bucket.yaml
+
+
+#DELETE VALIDATING WEBHOOKS CONFIGS
+
+kubectl get validatingwebhookconfigurations.admissionregistration.k8s.io //delete all objects
+kubectl get MutatingWebhookConfiguration //delete all objects
+
+
+
+#EXEC INTO CONTAINER
+
+kubectl exec -it -n monit prometheus-prometheus-operator-prometheus-0 -c thanos-sidecar -- /bin/sh
+
+
+echo "Username: $(kubectl get secret prometheus-operator-grafana --namespace monit --output=jsonpath='{.data.admin-password}' | base64 --decode)"
+
+echo "Username: $(kubectl get secret prometheus-operator-grafana --namespace monit --output=jsonpath='{.data.admin-user}' | base64 --decode)"
+
+
+
+echo "Username: $(kubectl get secret rook-ceph-dashboard-password --namespace rook-ceph --output=jsonpath='{.data.admin-password}' | base64 --decode)"
+

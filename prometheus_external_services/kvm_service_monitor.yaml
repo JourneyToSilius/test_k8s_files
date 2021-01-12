@@ -1,0 +1,96 @@
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   labels:
+#     app: kvm-monitor
+#   name: kvm-monitor
+#   namespace: monit
+# spec:
+#   endpoints:
+#   - interval: 30s
+#     port: metrics
+#   namespaceSelector:
+#     matchNames:
+#     - monit
+#   selector:
+#     matchLabels:
+#       app: kvm-monitor
+
+# ---
+
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#     name: kvm-monitor
+#     labels:
+#         #k8s-app: kvm-monitor
+#         release: prometheus-operator
+# spec:
+#   endpoints:
+#   - interval: 30s
+#     port: metrics
+#     honorLabels: true
+#     path: /metrics
+#   namespaceSelector:
+#     matchNames:
+#     - monit
+#   selector:
+#     matchLabels:
+#       release: prometheus-operator
+#       #k8s-app: kvm-monitor
+
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: external-server
+#   labels:
+#     k8s-app: external-server
+# spec:
+#   endpoints:
+#   - port: metrics
+#     interval: 30s
+#     scheme: http
+#   selector:
+#     matchLabels:
+#       k8s-app: external-server
+#   namespaceSelector:
+#     matchNames:
+#     - monit
+
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: kvm-metrics-sm
+#   labels:
+#     k8s-app: kvm-metrics
+#     prometheus: kube-prometheus
+# spec:
+#   selector:
+#     matchLabels:
+#       k8s-app: kvm-metrics
+#     namespaceSelector:
+#       matchNames:
+#         prometheus: monit
+#   endpoints:
+#     - port: metrics
+#       interval: 10s
+#       honorLabels: true
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kvm-metrics-k8s
+  labels:
+    k8s-app: kvm-metrics
+spec:
+  jobLabel: k8s-app
+  endpoints:
+  - port: metrics
+    interval: 30s
+    honorLabels: true
+  selector:
+    matchLabels:
+      k8s-app: kvm-metrics
+  namespaceSelector:
+    matchNames:
+    - monit

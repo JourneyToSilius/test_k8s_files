@@ -1,0 +1,590 @@
+{
+    "editable": true,
+    "rows": [
+      {
+        "id": 1,
+        "panels": [
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 2,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer:libvirt_domain_info_cpu_time_seconds:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}"
+              }
+            ],
+            "title": "Total usage",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "short",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 0,
+            "id": 3,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": false,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer:libvirt_domain_info_cpu_time_seconds:max_ratio{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}"
+              }
+            ],
+            "title": "Per-cpu average usage",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "percentunit",
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          }
+        ],
+        "showTitle": true,
+        "title": "CPU",
+        "titleSize": "h1"
+      },
+      {
+        "id": 4,
+        "panels": [
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 5,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6.0,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_file_target_device:libvirt_domain_block_stats_read_requests:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_file }})"
+              }
+            ],
+            "title": "Read requests",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "rps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 6,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6.0,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_file_target_device:libvirt_domain_block_stats_write_requests:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_file }})"
+              }
+            ],
+            "title": "Write requests",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "wps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 7,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6.0,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_file_target_device:libvirt_domain_block_stats_read_bytes:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_file }})"
+              }
+            ],
+            "title": "Read bandwidth",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "Bps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 8,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6.0,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_file_target_device:libvirt_domain_block_stats_write_bytes:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_file }})"
+              }
+            ],
+            "title": "Write bandwidth",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "Bps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          }
+        ],
+        "showTitle": true,
+        "title": "Block devices",
+        "titleSize": "h1"
+      },
+      {
+        "id": 9,
+        "panels": [
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 10,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_receive_packets:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Packets received",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "rps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 11,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_transmit_packets:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Packets transmitted",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "wps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 12,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_receive_bytes:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Receive bandwidth",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "Bps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 13,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 6,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_transmit_bytes:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Transmit bandwidth",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "Bps",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 14,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 3,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_receive_errors:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Receive errors",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "ops",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 15,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 3,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_receive_drops:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Receive drops",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "ops",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 16,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 3,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_transmit_errors:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Transmit errors",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "ops",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          },
+          {
+            "datasource": "Prometheus-1",
+            "fill": 8,
+            "id": 17,
+            "legend": {
+              "show": false
+            },
+            "lines": true,
+            "nullPointMode": "null",
+            "percentage": false,
+            "span": 3,
+            "stack": true,
+            "targets": [
+              {
+                "expr": "domain_instance_job_kc_customer_source_bridge_target_device:libvirt_domain_interface_stats_transmit_drops:rate5m{domain=~\"$domain\",instance=~\"$instance\",job=\"libvirt_exporter\",kc_datacenter=~\"$kc_datacenter\",kc_host=~\"$kc_host\",source_bridge=~\"$source_bridge\"}",
+                "legendFormat": "{{ instance }}/{{ domain }}: {{ target_device }} ({{ source_bridge }})"
+              }
+            ],
+            "title": "Transmit drops",
+            "tooltip": {
+              "sort": 2
+            },
+            "type": "graph",
+            "yaxes": [
+              {
+                "format": "ops",
+                "logBase": 1,
+                "max": null,
+                "min": 0,
+                "show": true
+              },
+              {
+                "show": false
+              }
+            ]
+          }
+        ],
+        "showTitle": true,
+        "title": "Networking",
+        "titleSize": "h1"
+      }
+    ],
+    "schemaVersion": 14,
+    "templating": {
+      "list": [
+        {
+          "datasource": "Prometheus-1",
+          "includeAll": true,
+          "multi": true,
+          "name": "domain",
+          "query": "label_values(domain_job_kc_customer:libvirt_domain_info_virtual_cpus:count{job=\"libvirt_exporter\"}, domain)",
+          "refresh": 2,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "datasource": "Prometheus-1",
+          "includeAll": true,
+          "multi": true,
+          "name": "instance",
+          "query": "label_values(instance_job_kc_customer:up:count{job=\"libvirt_exporter\"}, instance)",
+          "refresh": 2,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "datasource": "Prometheus-1",
+          "includeAll": true,
+          "multi": true,
+          "name": "kc_datacenter",
+          "query": "label_values(job_kc_customer_kc_datacenter:up:count{job=\"libvirt_exporter\"}, kc_datacenter)",
+          "refresh": 2,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "datasource": "Prometheus-1",
+          "includeAll": true,
+          "multi": true,
+          "name": "kc_host",
+          "query": "label_values(job_kc_customer_kc_host:up:count{job=\"libvirt_exporter\"}, kc_host)",
+          "refresh": 2,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "datasource": "Prometheus-1",
+          "includeAll": true,
+          "multi": true,
+          "name": "source_bridge",
+          "query": "label_values(job_kc_customer_source_bridge:libvirt_domain_interface_stats_receive_bytes_total:count{job=\"libvirt_exporter\"}, source_bridge)",
+          "refresh": 2,
+          "sort": 1,
+          "type": "query"
+        }
+      ]
+    },
+    "title": "Libvirt (KVM)"
+  }
+  

@@ -5,7 +5,7 @@ grafana:
   ingress:
     enabled: true
     hosts:
-    - cluster.local
+      - cluster.local
   additionalDataSources:
     - name: Prometheus
       type: prometheus
@@ -18,6 +18,10 @@ grafana:
 prometheus:
   retention: 12h
   prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: "Bare Metal"
+        static_configs:
+          - targets: ["192.168.3.82:9100","192.168.3.83:9100","192.168.3.81:9100","192.168.3.84:9100"]
     externalLabels:
       cluster: observe # Add a cluster tag to distinguish clusters
     storageSpec:
