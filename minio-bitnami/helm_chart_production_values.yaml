@@ -11,15 +11,15 @@ global:
 #  imageRegistry: myRegistryName
 #  imagePullSecrets:
 #    - myRegistryKeySecretName
-  # storageClass: rook-ceph-block
+#   storageClass: myStorageClass
 
-## Bitnami MinIO image version
+## Bitnami MinIO(TM) image version
 ## ref: https://hub.docker.com/r/bitnami/minio/tags/
 ##
 image:
   registry: docker.io
   repository: bitnami/minio
-  tag: 2020.12.29-debian-10-r0
+  tag: 2020.12.29-debian-10-r13
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -61,13 +61,13 @@ serviceAccount:
 ##
 clusterDomain: cluster.local
 
-## Bitnami MinIO Client image version
+## Bitnami MinIO(TM) Client image version
 ## ref: https://hub.docker.com/r/bitnami/minio-client/tags/
 ##
 clientImage:
   registry: docker.io
   repository: bitnami/minio-client
-  tag: 2020.12.18-debian-10-r12
+  tag: 2020.12.18-debian-10-r25
 
 ## Init containers parameters:
 ## volumePermissions: Change the owner and group of the persistent volume mountpoint to runAsUser:fsGroup values from the securityContext section.
@@ -100,12 +100,12 @@ volumePermissions:
     #   cpu: 100m
     #   memory: 128Mi
 
-## MinIO server mode. Allowed values: standalone or distributed.
+## MinIO(TM) server mode. Allowed values: standalone or distributed.
 ## Distributed Minio ref: https://docs.minio.io/docs/distributed-minio-quickstart-guide
 ##
 mode: distributed
 
-## MinIO deployment parameters
+## MinIO(TM) deployment parameters
 ## Only when mode is 'standalone'
 ##
 deployment:
@@ -121,7 +121,7 @@ deployment:
   updateStrategy:
     type: Recreate
 
-## MinIO statefulset parameters
+## MinIO(TM) statefulset parameters
 ## Only when mode is 'distributed'
 ##
 statefulset:
@@ -143,7 +143,7 @@ statefulset:
 ##
 # existingSecret:
 
-## Mount MinIO secret as a file instead of passing environment variable
+## Mount MinIO(TM) secret as a file instead of passing environment variable
 ##
 useCredentialsFile: false
 
@@ -151,10 +151,10 @@ useCredentialsFile: false
 ##
 forceNewKeys: false
 
-## MinIO credentials
+## MinIO(TM) credentials
 ##
 accessKey:
-  ## MinIO Access Key
+  ## MinIO(TM) Access Key
   ## ref: https://github.com/bitnami/bitnami-docker-minio/#setting-up-minio-in-distributed-mode
   ##
   password: 'minio'
@@ -163,7 +163,7 @@ accessKey:
   ##
   forcePassword: false
 secretKey:
-  ## MinIO Secret Key
+  ## MinIO(TM) Secret Key
   ## ref: https://github.com/bitnami/bitnami-docker-minio/#setting-up-minio-in-distributed-mode
   ##
   password: 'minio123'
@@ -176,7 +176,7 @@ secretKey:
 ##
 defaultBuckets: "thanos"
 
-## Disable MinIO Web UI
+## Disable MinIO(TM) Web UI
 ## ref: https://github.com/minio/minio/tree/master/docs/config/#browser
 ##
 disableWebUI: false
@@ -184,9 +184,6 @@ disableWebUI: false
 ## Define custom environment variables to pass to the image here
 ##
 extraEnv: {}
-
-## Define a custom command for the minio container
-command: {}
 
 ## Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -199,7 +196,10 @@ securityContext:
 ## Pod annotations
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
-podAnnotations: {}
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/path: "/minio/prometheus/metrics"
+  prometheus.io/port: "9000"
 
 ## Pod affinity preset
 ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
@@ -250,7 +250,7 @@ nodeSelector: {}
 ##
 tolerations: []
 
-## MinIO containers' resource requests and limits
+## MinIO(TM) containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources:
@@ -261,11 +261,11 @@ resources:
   limits: {}
   #   cpu: 250m
   #   memory: 256Mi
-  requests: {}
-  #   cpu: 250m
-  #   memory: 256Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
 
-## MinIO containers' liveness and readiness probes
+## MinIO(TM) containers' liveness and readiness probes
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
 livenessProbe:
@@ -293,15 +293,16 @@ persistence:
 
   ## Enable persistence using an existing PVC (only in standalone mode)
   ##
-  #existingClaim: minio-pv-claim
+  # existingClaim:
 
   ## Data volume mount path
   ##
   mountPath: /data
+
   ## Persistent Volume Access Mode
   ##
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
 
   ## Persistent Volume size
   ##
@@ -314,20 +315,20 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  #storageClass: rook-ceph-block
+  # storageClass: "-"
 
   ## Persistent Volume Claim annotations
   ##
   annotations: {}
 
-## MinIO Service properties
+## MinIO(TM) Service properties
 ##
 service:
-  ## MinIO Service type
+  ## MinIO(TM) Service type
   ##
   type: ClusterIP
 
-  ## MinIO Service port
+  ## MinIO(TM) Service port
   ##
   port: 9000
 
@@ -348,7 +349,7 @@ service:
   # loadBalancerIP:
 
 ## Configure the ingress resource that allows you to access the
-## MinIO web browser. Set up the URL
+## MinIO(TM) web browser. Set up the URL
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
 ##
 ingress:
@@ -408,16 +409,15 @@ ingress:
 networkPolicy:
   ## Specifies whether a NetworkPolicy should be created
   ##
-  enabled: false
+  enabled: true
 
   ## The Policy model to apply. When set to false, only pods with the correct
-  ## client label will have network access to the port MinIO is listening
-  ## on. When true, MinIO will accept connections from any source
+  ## client label will have network access to the port MinIO(TM) is listening
+  ## on. When true, MinIO(TM) will accept connections from any source
   ## (with the correct destination port).
   ##
-  allowExternal: true
+  allowExternal: false
 
-## MinIO supports two authentication modes for Prometheus either jwt or public, by default MinIO runs in jwt mode.
+## MinIO(TM) supports two authentication modes for Prometheus either jwt or public, by default MinIO(TM) runs in jwt mode.
 ## To allow public access without authentication for prometheus metrics set environment as follows.
-prometheusAuthType: public
-
+prometheusAuthType: jwt
