@@ -37,3 +37,7 @@ echo "Username: $(kubectl get secret prometheus-operator-grafana --namespace mon
 
 echo "Username: $(kubectl get secret rook-ceph-dashboard-password --namespace rook-ceph --output=jsonpath='{.data.admin-password}' | base64 --decode)"
 
+#DELETE PODS TO RESTART THEM
+
+kubectl delete pod -l k8s-app=kube-proxy -n kube-system
+
