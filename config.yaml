@@ -4,9 +4,9 @@ etcd:
   # one of local or external
   external:
     endpoints:
-    - "https://192.168.3.98:2379"
-    - "https://192.168.3.99:2379"
-    - "https://192.168.3.100:2379"
+    - "https://192.168.3.108:2379"
+    - "https://192.168.3.109:2379"
+    - "https://192.168.3.110:2379"
 
     caFile: "/etc/etcd/ca.pem"
     certFile: "/etc/etcd/kubernetes.pem"
