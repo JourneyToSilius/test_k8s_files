@@ -1,5 +1,8 @@
 echo "Username: $(kubectl get secret prom-stack-test-release-grafana --namespace monitoring --output=jsonpath='{.data.admin-password}' | base64 --decode)"
 
+kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
+
+
 kubectl expose deployment thanos-test-release-query-frontend --type=NodePort --name=
 
 
