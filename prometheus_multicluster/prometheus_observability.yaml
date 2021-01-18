@@ -19,11 +19,11 @@ prometheus:
   retention: 12h
   prometheusSpec:
     additionalScrapeConfigs:
-      - job_name: "Bare Metal"
+      - job_name: "baremetal"
         static_configs:
           - targets: ["192.168.3.82:9100","192.168.3.83:9100","192.168.3.81:9100","192.168.3.84:9100"]
     externalLabels:
-      cluster: observe # Add a cluster tag to distinguish clusters
+      cluster: kraken # Add a cluster tag to distinguish clusters
     storageSpec:
       volumeClaimTemplate:
         spec:
