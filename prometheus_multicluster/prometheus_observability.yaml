@@ -9,7 +9,7 @@ grafana:
   additionalDataSources:
     - name: Prometheus
       type: prometheus
-      url: http://thanos-querier:9090/
+      url: thanos-query:9090
       access: proxy
       isDefault: true
   sidecar:
