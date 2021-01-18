@@ -51,4 +51,4 @@ apiServer:
 # certificatesDir: "/etc/kubernetes/pki"
 # imageRepository: "k8s.gcr.io"
 # useHyperKubeImage: false
-clusterName: "cluster-fuck"
+clusterName: "kraken"
