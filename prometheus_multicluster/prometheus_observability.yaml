@@ -7,7 +7,7 @@ grafana:
     hosts:
       - cluster.local
   additionalDataSources:
-    - name: Kraken-Thanos-Query
+    - name: Kraken-Thanos
       type: prometheus
       url: thanos-query:9090
       access: proxy
