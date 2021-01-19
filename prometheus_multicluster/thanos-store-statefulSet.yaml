@@ -9,7 +9,7 @@ metadata:
   name: thanos-store
   namespace: monit
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app.kubernetes.io/component: object-store-gateway

@@ -6,7 +6,7 @@ metadata:
   name: thanos-store
   namespace: monit
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: thanos-store
