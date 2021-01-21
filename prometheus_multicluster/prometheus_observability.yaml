@@ -25,7 +25,7 @@ prometheus:
 
       - job_name: "haproxy-masters"
         static_configs:
-          - targets: ["192.168.3.98:9101","192.168.3.99:9101","192.168.3.100:9101"]
+          - targets: ["192.168.3.98:8404","192.168.3.99:8404","192.168.3.100:8404"]
 
       - job_name: "keepalived-masters"
         static_configs:
