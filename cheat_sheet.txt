@@ -44,3 +44,5 @@ echo "Username: $(kubectl get secret rook-ceph-dashboard-password --namespace ro
 
 kubectl delete pod -l k8s-app=kube-proxy -n kube-system
 
+
+
