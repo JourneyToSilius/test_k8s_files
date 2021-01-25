@@ -133,7 +133,7 @@ serviceMonitor:
   ## If true, a ServiceMonitor CRD is created for a prometheus operator
   ## https://github.com/coreos/prometheus-operator
   ##
-  enabled: false
+  enabled: true
   path: /metrics
   #  namespace: monitoring  (defaults to use the namespace this chart is deployed to)
   labels: {}
@@ -179,13 +179,13 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
-#  limits:
-#    cpu: 100m
-#    memory: 128Mi
-#  requests:
-#    cpu: 100m
-#    memory: 128Mi
+resources:
+ limits:
+   cpu: 4000m
+   memory: 256Mi
+ requests:
+   cpu: 4000m
+   memory: 256Mi
 
 ## Node labels for pod assignment
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -235,9 +235,9 @@ extraContainerVolumes: []
 persistence:
   type: pvc
   enabled: true
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   size: 10Gi
   # annotations: {}
   finalizers:
