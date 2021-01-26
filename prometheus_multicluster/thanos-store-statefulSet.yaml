@@ -96,8 +96,8 @@ spec:
       name: thanos-objectstorage
     spec:
       accessModes:
-      - ReadWriteMany
-      storageClassName: rook-cephfs
+      - ReadWriteOnce
+      storageClassName: rook-ceph-block
       resources:
         requests:
           storage: 5Gi

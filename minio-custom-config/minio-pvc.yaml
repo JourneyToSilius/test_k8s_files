@@ -20,9 +20,9 @@ metadata:
   labels:
     app: minio-storage-claim
 spec:
-  storageClassName: rook-cephfs
+  storageClassName: rook-ceph-block
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
