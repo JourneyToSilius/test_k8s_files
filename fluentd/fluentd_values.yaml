@@ -18,6 +18,7 @@ rules:
   resources:
   - pods
   - namespaces
+  - nodes
   verbs:
   - get
   - list

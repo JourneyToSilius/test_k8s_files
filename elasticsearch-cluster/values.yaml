@@ -471,14 +471,14 @@ coordinating:
   service:
     ## coordinating-only service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## Elasticsearch tREST API port
     ##
     port: 9200
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
-    # nodePort:
+    nodePort: 32389
     ## Provide any additional annotations which may be required. This can be used to
     ## set the LoadBalancer service type to internal only.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
