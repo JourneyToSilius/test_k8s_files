@@ -20,12 +20,17 @@ spec:
     spec:
       containers:
       - name: thanos-query
-        image: improbable/thanos:v0.2.1
+        image: quay.io/thanos/thanos:v0.17.0
         args:
-        - "query"
-        - "--log.level=debug"
-        - "--query.replica-label=prometheus_replica"
-        - "--cluster.peers=thanos-peers.monitoring.svc:10900"
+        - query
+        - --grpc-address=0.0.0.0:10901
+        - --http-address=0.0.0.0:9090
+        - --log.level=info
+        - --log.format=logfmt
+        - --query.replica-label=prometheus_replica
+        - --query.replica-label=rule_replica
+        - --store=dnssrv+_grpc._tcp.thanos-store.monit.svc.cluster.local
+        #- --store=dnssrv+_grpc._tcp.prometheus-operated.monit.svc.cluster.local
         ports:
         - name: http
           containerPort: 10902

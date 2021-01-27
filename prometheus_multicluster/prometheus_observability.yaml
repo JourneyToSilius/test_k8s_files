@@ -1,20 +1,20 @@
-grafana:
-  persistence:
-    enabled: true
-    storageClassName: rook-ceph-block
-  ingress:
-    enabled: true
-    hosts:
-      - cluster.local
-  additionalDataSources:
-    - name: Kraken-Thanos
-      type: prometheus
-      url: thanos-query:9090
-      access: proxy
-      isDefault: true
-  sidecar:
-    datasources:
-      defaultDatasourceEnabled: false
+# grafana:
+#   persistence:
+#     enabled: true
+#     storageClassName: rook-ceph-block
+#   ingress:
+#     enabled: true
+#     hosts:
+#       - cluster.local
+#   additionalDataSources:
+#     - name: Kraken-Thanos
+#       type: prometheus
+#       url: thanos-query:9090
+#       access: proxy
+#       isDefault: true
+#   sidecar:
+#     datasources:
+#       defaultDatasourceEnabled: false
 prometheus:
   retention: 12h
   prometheusSpec:

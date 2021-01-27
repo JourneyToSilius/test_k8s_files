@@ -22,7 +22,7 @@ spec:
       containers:
       - name: thanos-compactor
         # Always use explicit image tags (release or master-<date>-sha) instead of ambigous `latest` or `master`.
-        image: improbable/thanos:v0.2.1
+        image: quay.io/thanos/thanos:v0.17.0
         args:
         - "compact"
         - "--log.level=debug"
