@@ -336,12 +336,12 @@ serviceAccount:
 metrics:
   # Metrics can not be disabled yet: https://github.com/minio/minio/issues/7493
   serviceMonitor:
-    enabled: false
+    enabled: true
     additionalLabels: {}
     relabelConfigs: {}
-    # namespace: monitoring
-    # interval: 30s
-    # scrapeTimeout: 10s
+    namespace: monit
+    interval: 30s
+    scrapeTimeout: 10s
 
 ## ETCD settings: https://github.com/minio/minio/blob/master/docs/sts/etcd.md
 ## Define endpoints to enable this section.
