@@ -1,0 +1,6 @@
+  bucket: thanos
+  endpoint: minio-test:9000
+  access_key: minio
+  secret_key: minio123
+  insecure: true
+  signature_version2: false
