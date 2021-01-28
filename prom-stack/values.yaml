@@ -656,7 +656,7 @@ grafana:
   additionalDataSources:
   - name: Kraken-Thanos
     access: proxy
-    basicAuth: true
+    basicAuth: false
     basicAuthPassword: pass
     basicAuthUser: daco
     editable: false
@@ -664,7 +664,7 @@ grafana:
         tlsSkipVerify: true
     orgId: 1
     type: prometheus
-    url: http://thanos-query.monit:9090
+    url: http://thanos-prometheus-thanos-querier.monit:9090
     version: 1
 
   ## Passed to grafana subchart and used by servicemonitor below
