@@ -16,6 +16,7 @@ spec:
       sourceLabels:
       - namespace
       - pod
+      - node
       targetLabel: instance
   selector:
     matchLabels:

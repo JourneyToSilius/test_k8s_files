@@ -165,7 +165,7 @@ storeGateway:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 40Gi
     storageClass: rook-ceph-block
 
   autoscaling:
@@ -244,7 +244,7 @@ compact:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 40Gi
 
 
 ruler:
@@ -326,7 +326,7 @@ ruler:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 40Gi
     storageClass: rook-ceph-block
   podNumericalPriorityEnabled: true
   podPriority: 0

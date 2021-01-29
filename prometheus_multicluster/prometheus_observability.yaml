@@ -38,7 +38,7 @@ prometheus:
           storageClassName: rook-ceph-block
           resources:
             requests:
-              storage: 10Gi
+              storage: 50Gi
     thanos:
       baseImage: quay.io/thanos/thanos
       version: v0.17.2

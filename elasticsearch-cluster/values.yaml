@@ -115,7 +115,7 @@ clusterDomain: cluster.local
 
 ## Elasticsearch cluster name
 ##
-name: elasticsearch
+name: kraken
 
 ## Comma, semi-colon or space separated list of plugins to install at initialization
 ## ref: https://github.com/bitnami/bitnami-docker-elasticsearch#environment-variables
@@ -192,7 +192,7 @@ master:
   updateStrategy:
     type: RollingUpdate
 
-  heapSize: 128m
+  heapSize: 4192
   ## Provide annotations for master-eligible pods.
   ##
   podAnnotations: {}
