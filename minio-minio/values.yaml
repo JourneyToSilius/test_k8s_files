@@ -211,7 +211,10 @@ securityContext:
   fsGroup: 1000
 
 # Additational pod annotations
-podAnnotations: {}
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/path: "/minio/prometheus/metrics"
+  prometheus.io/port: "9000"
 
 # Additional pod labels
 podLabels: {}
@@ -336,7 +339,7 @@ serviceAccount:
 metrics:
   # Metrics can not be disabled yet: https://github.com/minio/minio/issues/7493
   serviceMonitor:
-    enabled: false
+    enabled: true
     additionalLabels: {}
     relabelConfigs: {}
     namespace: monit
