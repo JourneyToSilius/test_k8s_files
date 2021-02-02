@@ -136,12 +136,6 @@ persistence:
   ##
   ## Storage class of PV to bind. By default it looks for standard storage class.
   ## If the PV uses a different storage class, specify that here.
-  # storageClass: rook-ceph-block
-  # VolumeName: ""
-  # accessMode: ReadWriteOnce
-  # size: 800Gi
-
-  # THIS IS FOR TESTING NAS-GATEWAY FEATURE
   storageClass: rook-cephfs
   VolumeName: ""
   accessMode: ReadWriteMany
@@ -345,7 +339,7 @@ serviceAccount:
 metrics:
   # Metrics can not be disabled yet: https://github.com/minio/minio/issues/7493
   serviceMonitor:
-    enabled: true
+    enabled: false
     additionalLabels: {}
     relabelConfigs: {}
     namespace: monit

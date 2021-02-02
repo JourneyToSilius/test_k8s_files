@@ -125,7 +125,7 @@ persistence:
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
-  existingClaim: minio-pv-claim
+  #existingClaim: minio-pv-claim
 
   ## minio data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -136,9 +136,15 @@ persistence:
   ##
   ## Storage class of PV to bind. By default it looks for standard storage class.
   ## If the PV uses a different storage class, specify that here.
-  storageClass: rook-ceph-block
+  # storageClass: rook-ceph-block
+  # VolumeName: ""
+  # accessMode: ReadWriteOnce
+  # size: 800Gi
+
+  # THIS IS FOR TESTING NAS-GATEWAY FEATURE
+  storageClass: rook-cephfs
   VolumeName: ""
-  accessMode: ReadWriteOnce
+  accessMode: ReadWriteMany
   size: 800Gi
 
   ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
@@ -303,7 +309,7 @@ gcsgateway:
 ## https://docs.minio.io/docs/minio-gateway-for-nas
 
 nasgateway:
-  enabled: false
+  enabled: true
   # Number of parallel instances
   replicas: 4
   # For NAS Gateway, you may want to bind the PVC to a specific PV. To ensure that happens, PV to bind to should have
