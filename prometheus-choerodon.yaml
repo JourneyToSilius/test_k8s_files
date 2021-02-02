@@ -368,7 +368,7 @@ alertmanager:
 
     ## Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the
     ## running cluster equal to the expected size.
-    replicas: 4
+    replicas: 3
 
     ## Time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression
     ## [0-9]+(ms|s|m|h) (milliseconds seconds minutes hours).
@@ -1759,11 +1759,11 @@ prometheus:
 
     ## How long to retain metrics
     ##
-    retention: 10d
+    retention: ""
 
     ## Maximum size of metrics
     ##
-    retentionSize: ""
+    retentionSize: 100Gi
 
     ## Enable compression of the write-ahead log using Snappy.
     ##
@@ -1775,7 +1775,7 @@ prometheus:
 
     ## Number of Prometheus replicas desired
     ##
-    replicas: 4
+    replicas: 3
 
     ## Log level for Prometheus be configured in
     ##

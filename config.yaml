@@ -1,5 +1,7 @@
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
+dns:
+  type: CoreDNS
 etcd:
   # one of local or external
   external:

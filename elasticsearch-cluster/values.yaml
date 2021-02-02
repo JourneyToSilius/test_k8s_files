@@ -327,7 +327,7 @@ master:
       - ReadWriteOnce
     ## Persistent Volume size
     ##
-    size: 100Gi
+    size: 5Gi
 
   ## Service parameters for master-eligible node(s)
   ##
