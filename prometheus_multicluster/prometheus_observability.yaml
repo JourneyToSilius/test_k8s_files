@@ -16,7 +16,7 @@
 #     datasources:
 #       defaultDatasourceEnabled: false
 prometheus:
-  retention: 12h
+  #retention: 12h
   prometheusSpec:
     additionalScrapeConfigs:
       - job_name: "baremetal-servers"
@@ -32,13 +32,13 @@ prometheus:
           - targets: ["192.168.3.98:9856","192.168.3.99:9856","192.168.3.100:9856"]
     externalLabels:
       cluster: kraken # Add a cluster tag to distinguish clusters
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: rook-ceph-block
-          resources:
-            requests:
-              storage: 100Gi
+    # storageSpec:
+    #   volumeClaimTemplate:
+    #     spec:
+    #       storageClassName: rook-ceph-block
+    #       resources:
+    #         requests:
+    #           storage: 100Gi
     thanos:
       baseImage: quay.io/thanos/thanos
       version: v0.17.2

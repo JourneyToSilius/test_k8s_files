@@ -100,7 +100,7 @@ querier:
 
 storeGateway:
   enabled: true
-  replicaCount: 2
+  replicaCount: 1
   updateStrategy: RollingUpdate
   image:
     repository: quay.io/thanos/thanos
@@ -165,7 +165,7 @@ storeGateway:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 5Gi
     storageClass: rook-ceph-block
 
   autoscaling:
@@ -244,7 +244,7 @@ compact:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 5Gi
 
 
 ruler:
@@ -326,7 +326,7 @@ ruler:
       - ReadWriteOnce
     annotations: {}
     existingClaim: ""
-    size: 10Gi
+    size: 5Gi
     storageClass: rook-ceph-block
   podNumericalPriorityEnabled: true
   podPriority: 0

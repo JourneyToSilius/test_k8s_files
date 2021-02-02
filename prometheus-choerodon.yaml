@@ -528,7 +528,7 @@ grafana:
 
   sidecar:
     dashboards:
-      enabled: true
+      enabled: false
       label: grafana_dashboard
 
       ## Annotations for Grafana dashboard configmaps
@@ -1612,7 +1612,7 @@ prometheus:
     ##
     image:
       repository: quay.io/prometheus/prometheus
-      tag: v2.18.2
+      tag: v2.24.1
       sha: ""
 
     ## Tolerations for use with node taints
@@ -1759,11 +1759,11 @@ prometheus:
 
     ## How long to retain metrics
     ##
-    retention: ""
+    retention: 1d
 
     ## Maximum size of metrics
     ##
-    retentionSize: 100Gi
+    retentionSize: ""
 
     ## Enable compression of the write-ahead log using Snappy.
     ##
