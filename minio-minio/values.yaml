@@ -230,7 +230,7 @@ podLabels: {}
 ##
 resources:
   requests:
-    memory: 8Gi
+    memory: 1Gi
 
 ## Create a bucket after minio install
 ##
@@ -311,7 +311,7 @@ gcsgateway:
 nasgateway:
   enabled: true
   # Number of parallel instances
-  replicas: 4
+  replicas: 8
   # For NAS Gateway, you may want to bind the PVC to a specific PV. To ensure that happens, PV to bind to should have
   # a label like "pv: <value>", use value here.
   pv: ~
