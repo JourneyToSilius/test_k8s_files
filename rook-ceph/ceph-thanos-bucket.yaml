@@ -1,0 +1,9 @@
+type: s3
+config:
+  bucket: ceph-bkt
+  host: rook-ceph-rgw-s3-store.rook-ceph
+  endpoint: 10.108.130.110:443
+  access_key: Y5ONXJ7L9VL2Y4SYCKCE
+  secret_key: r6E1FZdm3kI2BR7bS00nA8oQLELXGvc4VppsUmas
+  #insecure: true
+  #signature_version2: false

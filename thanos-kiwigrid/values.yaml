@@ -124,11 +124,13 @@ storeGateway:
   objStoreType: S3  # WARNING: this is default to null in other sections
   additionalFlags: {}
   objStoreConfig:
-    bucket: thanos
-    endpoint: minio-test:9000
-    access_key: minio
-    secret_key: minio123
     insecure: true
+    bucket: thanos
+
+    #host: rook-ceph-rgw-s3-store.rook-ceph
+    endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
+    access_key:
+    secret_key:
   ## GCS example
   #  bucket: demo-bucket
 
@@ -160,7 +162,7 @@ storeGateway:
   volumeMounts:
   volumes:
   persistentVolume:
-    enabled: true
+    enabled: false
     accessModes:
       - ReadWriteOnce
     annotations: {}
@@ -209,10 +211,12 @@ compact:
   objStoreType: S3
   objStoreConfig:
     bucket: thanos
-    endpoint: minio-test:9000
-    access_key: minio
-    secret_key: minio123
+
     insecure: true
+    #host: rook-ceph-rgw-s3-store.rook-ceph
+    endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
+    access_key:
+    secret_key:
 
   ## GCS example
   #  bucket: demo-bucket
@@ -238,7 +242,7 @@ compact:
   volumeMounts:
   volumes:
   persistentVolume:
-    enabled: true
+    enabled: false
     storageClass: rook-ceph-block
     accessModes:
       - ReadWriteOnce
@@ -275,11 +279,13 @@ ruler:
 
   objStoreType: S3
   objStoreConfig:
-    bucket: thanos
-    endpoint: minio-test:9000
-    access_key: minio
-    secret_key: minio123
     insecure: true
+    bucket: thanos
+
+    #host: rook-ceph-rgw-s3-store.rook-ceph
+    endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
+    access_key: 
+    secret_key: 
 
   ## GCS example
   #  bucket: demo-bucket
@@ -321,7 +327,7 @@ ruler:
     timeoutSeconds: 30
 
   persistentVolume:
-    enabled: true
+    enabled: false
     accessModes:
       - ReadWriteOnce
     annotations: {}
@@ -349,11 +355,12 @@ bucketWebInterface:
   logLevel: info
   objStoreType: S3
   objStoreConfig:
-    bucket: thanos
-    endpoint: minio-test:9000
-    access_key: minio
-    secret_key: minio123
     insecure: true
+    bucket: thanos
+    #host: rook-ceph-rgw-s3-store.rook-ceph
+    endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
+    access_key:
+    secret_key:
 
     # bucket: thanos
     # endpoint: minio-test:9000
