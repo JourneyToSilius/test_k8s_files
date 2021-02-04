@@ -22,28 +22,28 @@ spec:
     instances: 1
     annotations:
     #  key: value
-    placement:
-     nodeAffinity:
-       requiredDuringSchedulingIgnoredDuringExecution:
-         nodeSelectorTerms:
-         - matchExpressions:
-           - key: storage-node
-             operator: In
-             values:
-             - "true"
-    #  tolerations:
-    #  - key: rgw-node
-    #    operator: Exists
-    #  podAffinity:
-    #  podAntiAffinity:
-    #  topologySpreadConstraints:
-    resources:
-    #  limits:
-    #    cpu: "500m"
-    #    memory: "1024Mi"
-    #  requests:
-    #    cpu: "500m"
-    #    memory: "1024Mi"
+    # placement:
+    #  nodeAffinity:
+    #    requiredDuringSchedulingIgnoredDuringExecution:
+    #      nodeSelectorTerms:
+    #      - matchExpressions:
+    #        - key: storage-node
+    #          operator: In
+    #          values:
+    #          - "true"
+    # #  tolerations:
+    # #  - key: rgw-node
+    # #    operator: Exists
+    # #  podAffinity:
+    # #  podAntiAffinity:
+    # #  topologySpreadConstraints:
+    # resources:
+    # #  limits:
+    # #    cpu: "500m"
+    # #    memory: "1024Mi"
+    # #  requests:
+    # #    cpu: "500m"
+    # #    memory: "1024Mi"
   healthCheck:
     bucket:
       disabled: false
