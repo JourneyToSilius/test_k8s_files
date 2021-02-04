@@ -134,7 +134,7 @@ querier:
   replicaLabels:
     - prometheus_replica
     - prometheus
-    - cluster
+
   logLevel: info
   stores:
     - dnssrv+_grpc._tcp.thanos-prometheus-thanos-store-gateway.monit.svc.cluster.local
@@ -207,8 +207,8 @@ storeGateway:
     insecure: true
     bucket: thanos
     endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
-    access_key:
-    secret_key:
+    access_key: 
+    secret_key: 
   objStoreConfigFile: null
   podNumericalPriorityEnabled: false
   podPriority: 0
@@ -283,8 +283,8 @@ compact:
     insecure: true
     bucket: thanos
     endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
-    access_key:
-    secret_key:
+    access_key: 
+    secret_key: 
   objStoreConfigFile: null
   podNumericalPriorityEnabled: false
   podPriority: 0
@@ -468,8 +468,8 @@ bucketWebInterface:
     insecure: true
     bucket: thanos
     endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
-    access_key:
-    secret_key:
+    access_key: 
+    secret_key: 
   objStoreConfigFile: null
   nodeSelector: {}
   podNumericalPriorityEnabled: false

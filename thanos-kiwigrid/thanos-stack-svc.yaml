@@ -68,3 +68,27 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: thanos
       app.kubernetes.io/name: prometheus-thanos-bucket-web-interface
+
+---
+
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   labels:
+#     app.kubernetes.io/instance: thanos
+#     app.kubernetes.io/name: thanos-prometheus-thanos-compact
+#   name: thanos-prometheus-thanos-compact
+#   namespace: monit
+# spec:
+#   endpoints:
+#   - port: http
+#     # relabelings:
+#     # - separator: /
+#     #   sourceLabels:
+#     #   - namespace
+#     #   - pod
+#     #   targetLabel: instance
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/instance: thanos
+#       app.kubernetes.io/name: thanos-prometheus-thanos-compact
