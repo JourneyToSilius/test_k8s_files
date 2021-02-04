@@ -3,7 +3,7 @@ config:
     bucket: thanos
     #host: rook-ceph-rgw-s3-store.rook-ceph
     endpoint: rook-ceph-rgw-s3-store.rook-ceph.svc:80
-    access_key: 
-    secret_key:
+    access_key: 26HP5MCU5H3CXXXBBUXB
+    secret_key: jYcitQAfXxNe5ecqDe2fIjr8vtlR26pFbB9yOlcD
     insecure: true
   #signature_version2: false

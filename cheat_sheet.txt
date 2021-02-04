@@ -26,7 +26,11 @@ kubectl -n monit create secret generic thanos-objectstorage --from-file=thanos.y
 kubectl get validatingwebhookconfigurations.admissionregistration.k8s.io //delete all objects
 kubectl get MutatingWebhookConfiguration //delete all objects
 
+######
 
+kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io grafana-kube-prometheus-st-admission
+
+kubectl delete MutatingWebhookConfiguration grafana-kube-prometheus-st-admission
 
 #EXEC INTO CONTAINER
 
