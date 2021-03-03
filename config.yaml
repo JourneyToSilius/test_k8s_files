@@ -4,9 +4,9 @@ etcd:
   # one of local or external
   external:
     endpoints:
-    - "https://192.168.3.98:2379"
-    - "https://192.168.3.99:2379"
-    - "https://192.168.3.100:2379"
+    - "https://172.16.78.177:2379"
+    - "https://172.16.78.178:2379"
+    - "https://172.16.78.179:2379"
 
     caFile: "/etc/etcd/ca.pem"
     certFile: "/etc/etcd/kubernetes.pem"
@@ -16,7 +16,7 @@ networking:
   #podSubnet: "10.30.0.0/64"
   dnsDomain: "cluster.local"
 #kubernetesVersion: "v1.12.0"
-controlPlaneEndpoint: "192.168.3.107:6443"
+controlPlaneEndpoint: "172.16.78.191:6443"
 apiServer:
   extraArgs:
     authorization-mode: "Node,RBAC"
@@ -51,4 +51,4 @@ apiServer:
 # certificatesDir: "/etc/kubernetes/pki"
 # imageRepository: "k8s.gcr.io"
 # useHyperKubeImage: false
-clusterName: "cluster-fuck"
+clusterName: "kraken"
