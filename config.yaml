@@ -1,14 +1,12 @@
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
-dns:
-  type: CoreDNS
 etcd:
   # one of local or external
   external:
     endpoints:
-    - "https://192.168.3.108:2379"
-    - "https://192.168.3.109:2379"
-    - "https://192.168.3.110:2379"
+    - "https://172.16.78.177:2379"
+    - "https://172.16.78.178:2379"
+    - "https://172.16.78.179:2379"
 
     caFile: "/etc/etcd/ca.pem"
     certFile: "/etc/etcd/kubernetes.pem"
@@ -18,7 +16,7 @@ networking:
   #podSubnet: "10.30.0.0/64"
   dnsDomain: "cluster.local"
 #kubernetesVersion: "v1.12.0"
-controlPlaneEndpoint: "192.168.3.107:6443"
+controlPlaneEndpoint: "172.16.78.191:6443"
 apiServer:
   extraArgs:
     authorization-mode: "Node,RBAC"
@@ -30,7 +28,7 @@ apiServer:
   #   readOnly: false
   #   pathType: File
   certSANs:
-  - "192.168.3.107"
+  - "172.16.78.191"
   timeoutForControlPlane: 4m0s
 # controllerManager:
 #   extraArgs:
