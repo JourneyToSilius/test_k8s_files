@@ -19,7 +19,7 @@ ExecStart=/usr/local/bin/etcd \
   --listen-client-urls https://172.16.78.180:2379,http://127.0.0.1:2379 \
   --advertise-client-urls https://172.16.78.177:2379 \
   --initial-cluster-token etcd-cluster-0 \
-  --initial-cluster 172.16.78.177=https://172.16.78.177:2380,172.16.78.178=https://172.16.78.178:2380,172.16.78.179=https://172.16.78.177:2380 \
+  --initial-cluster 172.16.78.177=https://172.16.78.177:2380,172.16.78.178=https://172.16.78.178:2380,172.16.78.179=https://172.16.78.179:2380 \
   --initial-cluster-state new \
   --data-dir=/var/lib/etcd
 Restart=on-failure
