@@ -28,7 +28,7 @@ apiServer:
   #   readOnly: false
   #   pathType: File
   certSANs:
-  - "192.168.3.107"
+  - "172.16.78.191"
   timeoutForControlPlane: 4m0s
 # controllerManager:
 #   extraArgs:
