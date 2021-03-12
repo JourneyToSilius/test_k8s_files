@@ -115,7 +115,7 @@ clusterDomain: cluster.local
 
 ## Elasticsearch cluster name
 ##
-name: kraken
+name: kraken-es
 
 ## Comma, semi-colon or space separated list of plugins to install at initialization
 ## ref: https://github.com/bitnami/bitnami-docker-elasticsearch#environment-variables
@@ -225,7 +225,7 @@ master:
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ## Allowed values: soft, hard
   ##
-  podAntiAffinityPreset: ""
+  podAntiAffinityPreset: hard
 
   ## Node affinity preset
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
