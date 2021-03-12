@@ -25,11 +25,11 @@ prometheus:
 
       - job_name: "haproxy-masters"
         static_configs:
-          - targets: ["192.168.3.98:8404","192.168.3.99:8404","192.168.3.100:8404"]
+          - targets: ["172.16.78.179:8404","172.16.78.180:8404","172.16.78.181:8404"]
 
       - job_name: "keepalived-masters"
         static_configs:
-          - targets: ["192.168.3.98:9856","192.168.3.99:9856","192.168.3.100:9856"]
+          - targets: ["172.16.78.179:9856","172.16.78.180:9856","172.16.78.181:9856"]
     externalLabels:
       cluster: kraken # Add a cluster tag to distinguish clusters
     # storageSpec:

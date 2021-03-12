@@ -894,9 +894,9 @@ kubeEtcd:
   ## If your etcd is not deployed as a pod, specify IPs it can be found on
   ##
   endpoints:
-    - 192.168.3.108
-    - 192.168.3.109
-    - 192.168.3.110
+    - 172.16.78.176
+    - 172.16.78.177
+    - 172.16.78.178
 
   ## Etcd service. If using kubeEtcd.endpoints only the port and targetPort are used
   ##
