@@ -6,12 +6,12 @@ global:
   # imageRegistry: myRegistryName
   # imagePullSecrets:
   #   - myRegistryKeySecretName
-  storageClass: rook-ceph-block
+  # storageClass: myStorageClass
   ## Coordinating name to be used in the Kibana subchart (service name)
   ##
   coordinating:
     name: coordinating-only
-  kibanaEnabled: true
+  kibanaEnabled: false
 
 ## Bitnami Elasticsearch image version
 ## ref: https://hub.docker.com/r/bitnami/elasticsearch/tags/
@@ -19,7 +19,7 @@ global:
 image:
   registry: docker.io
   repository: bitnami/elasticsearch
-  tag: 7.10.2-debian-10-r10
+  tag: 7.10.2-debian-10-r40
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -32,20 +32,17 @@ image:
   # pullSecrets:
   #   - myRegistryKeySecretName
   ## Set to true if you would like to see extra information on logs
-  ## ref:  https://github.com/bitnami/minideb-extras/#turn-on-bash-debugging
   ##
   debug: false
 
-## String to partially override elasticsearch.fullname template (will maintain the release name)
+## String to partially override common.names.fullname template (will maintain the release name)
 ##
 # nameOverride:
 
-## String to fully override elasticsearch.fullname template
+## String to fully override common.names.fullname template
 ##
 # fullnameOverride:
 
-## Bitnami Minideb image version
-## ref: https://hub.docker.com/r/bitnami/minideb/tags/
 ##
 sysctlImage:
   enabled: true
@@ -115,7 +112,7 @@ clusterDomain: cluster.local
 
 ## Elasticsearch cluster name
 ##
-name: kraken-es
+name: elastic
 
 ## Comma, semi-colon or space separated list of plugins to install at initialization
 ## ref: https://github.com/bitnami/bitnami-docker-elasticsearch#environment-variables
@@ -186,7 +183,7 @@ master:
   name: master
   ## Number of master-eligible node(s) replicas to deploy
   ##
-  replicas: 3
+  replicas: 2
 
   ## updateStrategy for ElasticSearch master statefulset
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
@@ -199,7 +196,12 @@ master:
   ##
   hostAliases: []
 
-  heapSize: 4g
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
+
+  heapSize: 128m
   ## Provide annotations for master-eligible pods.
   ##
   podAnnotations: {}
@@ -225,7 +227,7 @@ master:
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
   ## Allowed values: soft, hard
   ##
-  podAntiAffinityPreset: hard
+  podAntiAffinityPreset: ""
 
   ## Node affinity preset
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
@@ -376,12 +378,17 @@ master:
 coordinating:
   ## Number of coordinating-only node(s) replicas to deploy
   ##
-  replicas: 3
+  replicas: 2
 
   ## Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
   hostAliases: []
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
 
   ## updateStrategy for ElasticSearch coordinating deployment
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
@@ -389,7 +396,7 @@ coordinating:
   updateStrategy:
     type: RollingUpdate
 
-  heapSize: 4g
+  heapSize: 128m
   ## Provide annotations for the coordinating-only pods.
   ##
   podAnnotations: {}
@@ -524,18 +531,24 @@ data:
   name: data
   ## Number of data node(s) replicas to deploy
   ##
-  replicas: 3
+  replicas: 2
   ## Deployment pod host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
   hostAliases: []
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
+
   ## updateStrategy for ElasticSearch Data statefulset
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
   ##
   updateStrategy:
     type: RollingUpdate
     # rollingUpdatePartition
-  heapSize: 4g
+  heapSize: 1024m
   ## Provide annotations for the data pods.
   ##
   podAnnotations: {}
@@ -672,7 +685,7 @@ data:
       - ReadWriteOnce
     ## Persistent Volume size
     ##
-    size: 100Gi
+    size: 8Gi
   ## Provide functionality to use RBAC
   ##
   serviceAccount:
@@ -691,8 +704,8 @@ ingest:
   name: ingest
   ## Number of ingest node(s) replicas to deploy
   ##
-  replicas: 3
-  heapSize: 4g
+  replicas: 2
+  heapSize: 128m
   ## Provide annotations for the ingest pods.
   ##
   podAnnotations: {}
@@ -701,6 +714,11 @@ ingest:
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
   hostAliases: []
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
 
   ## Extra labels to add to Pod
   ##
@@ -819,12 +837,12 @@ ingest:
 ## Elasticsearch curator parameters
 ##
 curator:
-  enabled: true
+  enabled: false
   name: curator
   image:
     registry: docker.io
     repository: bitnami/elasticsearch-curator
-    tag: 5.8.3-debian-10-r43
+    tag: 5.8.3-debian-10-r72
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -841,6 +859,11 @@ curator:
     failedJobsHistoryLimit: ""
     successfulJobsHistoryLimit: ""
     jobRestartPolicy: Never
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
 
   ## Provide annotations for the data pods.
   ##
@@ -944,7 +967,7 @@ curator:
             direction: older
             timestring: '%Y.%m.%d'
             unit: days
-            unit_count: 14
+            unit_count: 90
             field:
             stats_result:
             epoch:
@@ -1007,7 +1030,7 @@ curator:
   ## Ensure that it is available at http://elasticsearch:9200
   ##
   # elasticsearch-s3-repository:
-  #   image: bitnami/minideb:latest
+  #   image: bitnami/minideb
   #   imagePullPolicy: "IfNotPresent"
   #   command:
   #   - "/bin/bash"
@@ -1040,12 +1063,12 @@ curator:
 ## ref: https://hub.docker.com/r/bitnami/elasticsearch-exporter/tags/
 ##
 metrics:
-  enabled: true
+  enabled: false
   name: metrics
   image:
     registry: docker.io
     repository: bitnami/elasticsearch-exporter
-    tag: 1.1.0-debian-10-r339
+    tag: 1.1.0-debian-10-r368
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -1058,6 +1081,11 @@ metrics:
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
   hostAliases: []
+
+  ## Use an alternate scheduler, e.g. "stork".
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  # schedulerName:
 
   ## Elasticsearch Prometheus exporter service type
   ##
@@ -1149,10 +1177,10 @@ metrics:
   ## Prometheus Operator ServiceMonitor configuration
   ##
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Namespace in which Prometheus is running
     ##
-    namespace: monit
+    # namespace: monitoring
 
     ## Interval at which metrics should be scraped.
     ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint

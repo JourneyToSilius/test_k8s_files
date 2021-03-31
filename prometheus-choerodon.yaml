@@ -368,7 +368,7 @@ alertmanager:
 
     ## Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the
     ## running cluster equal to the expected size.
-    replicas: 3
+    replicas: 1
 
     ## Time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression
     ## [0-9]+(ms|s|m|h) (milliseconds seconds minutes hours).
@@ -1405,7 +1405,7 @@ prometheus:
     ## List of IP addresses at which the Prometheus server service is available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
     ##
-    externalIPs: []
+    externalIPs: [172.16.78.190]
 
     ## Port to expose on each node
     ## Only used if service.type is 'NodePort'
@@ -1414,11 +1414,13 @@ prometheus:
 
     ## Loadbalancer IP
     ## Only use if service.type is "loadbalancer"
-    loadBalancerIP: ""
+    loadBalancerIP: 172.16.78.190
+    #loadBalancerIP: ""
     loadBalancerSourceRanges: []
     ## Service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
+    #type: ClusterIP
 
     sessionAffinity: ""
 
@@ -1903,10 +1905,10 @@ prometheus:
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
-    additionalScrapeConfigsSecret: {}
-      # enabled: false
-      # name:
-      # key:
+    additionalScrapeConfigsSecret:
+      enabled: true
+      name: additional-scrape-configs
+      key: additional_scrape.yaml
 
     ## additionalPrometheusSecretsAnnotations allows to add annotations to the kubernetes secret. This can be useful
     ## when deploying via spinnaker to disable versioning on the secret, strategy.spinnaker.io/versioned: 'false'
